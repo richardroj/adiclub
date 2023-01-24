@@ -1,5 +1,9 @@
 pipeline {
     agent any
+     tools {
+        maven 'M2_HOME'
+        jdk 'JAVA_HOME'
+     }
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
@@ -7,16 +11,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withMaven(maven: 'mvn') {
-                    sh 'mvn -B -DskipTests clean package'
-                }
+                sh 'mvn -B -DskipTests clean package'
             }
         }
          stage('Test') {
             steps {
-                withMaven(maven: 'mvn') {
-                    sh 'mvn test'
-                }
+                sh 'mvn test'
             }
         }
         stage('Docker Build') {

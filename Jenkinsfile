@@ -1,9 +1,5 @@
 pipeline {
     agent any
-     tools {
-        maven 'M2_HOME'
-        jdk 'JAVA_HOME'
-     }
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"

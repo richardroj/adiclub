@@ -1,5 +1,9 @@
 pipeline {
     agent any
+     tools {
+        maven 'Maven 3.8.3'
+        jdk 'jdk11'
+     }
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
@@ -7,7 +11,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
          stage('Test') {

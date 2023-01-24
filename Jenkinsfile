@@ -7,12 +7,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                withMaven(maven: 'mvn') {
+                    sh 'mvn -B -DskipTests clean package'
+                }
             }
         }
          stage('Test') {
             steps {
-                sh 'mvn test'
+                withMaven(maven: 'mvn') {
+                    sh 'mvn test'
+                }
             }
         }
         stage('Docker Build') {

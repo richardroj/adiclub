@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /adiclub
+            pathType: Prefix
+            backend:
+              service:
+                name: adiclub-service
+                port:
+                  number: 80

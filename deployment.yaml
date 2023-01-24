@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adiclub
+  labels:
+    app: adiclub
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: adiclub
+  template:
+    metadata:
+      labels:
+        app: adiclub
+    spec:
+      containers:
+        - name: adiclub
+          imagePullPolicy: IfNotPresent
+          image: richardroj/adiclub-service-svc:3.0.0

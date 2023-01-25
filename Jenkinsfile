@@ -3,7 +3,6 @@ pipeline {
      tools {
         maven 'maven-local'
         jdk 'jdk-11'
-        docker 'docker'
      }
     environment {
         DATE = new Date().format('yy.M')
